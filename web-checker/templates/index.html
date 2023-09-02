@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Uptime Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 20px;
+            color: #007bff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        form {
+            max-width: 500px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="url"],
+        input[type="number"],
+        input[type="file"] {
+            width: 70%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        #url_inputs {
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Website Uptime Checker</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <label for="single_url">Enter a single website URL:</label>
+        <input type="url" name="single_url" id="single_url" placeholder="https://www.example.com">
+        
+        <label for="file">Multiple URLs:</label>
+        <input type="file" name="file" id="file">
+
+        <button type="submit">Scan Websites</button>
+    </form>
+
+    <script>
+        // JavaScript to add input fields for multiple URLs
+        const numWebsitesInput = document.getElementById("num_websites");
+        const urlInputsDiv = document.getElementById("url_inputs");
+
+        numWebsitesInput.addEventListener("input", () => {
+            const numWebsites = numWebsitesInput.value;
+            urlInputsDiv.innerHTML = ""; // Clear previous inputs
+
+            for (let i = 0; i < numWebsites; i++) {
+                const label = document.createElement("label");
+                label.textContent = `Website URL #${i + 1}:`;
+
+                const input = document.createElement("input");
+                input.type = "url";
+                input.name = `url_${i + 1}`;
+                input.required = true;
+
+                urlInputsDiv.appendChild(label);
+                urlInputsDiv.appendChild(input);
+                urlInputsDiv.appendChild(document.createElement("br"));
+            }
+        });
+    </script>
+</body>
+</html>

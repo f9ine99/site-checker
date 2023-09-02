@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background-color: #f7f7f7;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2.5em;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 10px;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        li:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-2px);
+        }
+
+        .error {
+            color: #ff0000;
+            font-weight: bold;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007BFF;
+            font-size: 1.2em;
+            border: 2px solid #007BFF;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        a:hover {
+            background-color: #007BFF;
+            color: #fff;
+        }
+
+        .link-container {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Results</h1>
+    <div class="link-container">
+        <a href="/">Check more websites</a>
+    </div>
+    <ul>
+        {% for url, status in results %}
+            <li>
+                {% if status == "Failed to respond to the website" %}
+                    <span class="error">{{ url }} - {{ status }}</span>
+                {% else %}
+                    {{ url }} - {{ status }}
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
