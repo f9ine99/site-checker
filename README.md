@@ -1,0 +1,1 @@
+A website uptime checker is a tool or service that monitors the availability and performance of awebsite. Its primary function is to regularly check whether a website is accessible and functioning properly from various locations around the world.
